@@ -6,6 +6,5 @@ import { PageLayout } from "../components/page-layout";
 export const HomePage: React.FC = () => (
   <PageLayout>
     <HeroBanner />
-    <Auth0Features />
   </PageLayout>
 );

@@ -13,7 +13,7 @@ import { PublicPage } from "./pages/public-page";
 
 export const App: React.FC = () => {
   const { isLoading } = useAuth0();
-
+  
   if (isLoading) {
     return (
       <div className="page-layout">
