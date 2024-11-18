@@ -1,0 +1,30 @@
+.file-upload-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8vh;
+    
+    font-size: 14px;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.submit-btn {
+    margin-top: 2rem;
+}
+
+.title {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    margin-bottom: 1.5rem;
+}
+
+label {
+    margin-top: 2rem;
+    margin-bottom: 0.6rem;
+}
