@@ -1,10 +1,13 @@
 import React from "react";
+import { PageLayout } from "../../components/page-layout";
 
 
 const FilesPage: React.FC = () => {
     
     return (
-        <p>files</p>
+        <PageLayout>
+            <p>files</p>
+        </PageLayout>
     );
 }
 

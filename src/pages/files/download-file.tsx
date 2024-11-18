@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import axios from 'axios';
-// import './download-style.css';
+import { PageLayout } from "../../components/page-layout";
+import './download-file.css';
 
 
 function DownloadFile() {
@@ -8,15 +9,17 @@ function DownloadFile() {
     const [isLoading, setIsLoading] = useState(false);
     
     return (
-        <div className='container'>
-            <h1>Download file</h1>
-            <form className='download-form' onSubmit={onSubmit}>
-                <label>file id:</label>
-                <input id='file_id' type='text' name='file_id'/>
-                
-                <input type='submit' value='find'/>
-            </form>
-        </div>
+        <PageLayout>
+            <div className='container'>
+                <h2 className='title'>Download file</h2>
+                <form className='download-form' onSubmit={onSubmit}>
+                    <label>file id:</label>
+                    <input id='file_id' type='text' name='file_id'/>
+                    
+                    <input type='submit' value='find'/>
+                </form>
+            </div>
+        </PageLayout>
     );
     
     
