@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
-import axios from 'axios';
 import { PageLayout } from "../../components/page-layout";
+import fileService from 'src/services/file-service';
+import downloadBlob from 'src/utils/download-file-blob';
 import './download-file.css';
 
 
@@ -29,35 +30,17 @@ function DownloadFile() {
         
         const formData = new FormData(event.currentTarget);
         const fileId = formData.get('file_id') as string | null;
-        if (!fileId) {
-            console.error('entered file id was "null"');
+        await downloadFileById(fileId);
+    }
+    
+    async function downloadFileById(fileId: String | null) {
+        const blob = await fileService.getFileBlobById(fileId);
+        if (!blob) {
+            console.error("Failed to get file blob");
             return;
         }
         
-        try {
-            const res = await axios.get('http://localhost:8080/api/' + fileId, { responseType: 'blob' });
-            const fileContents = res.data;
-            const fileBlob = new Blob([fileContents], { type: 'text/plain' });
-            
-            downloadBlob(fileBlob);
-            
-        } catch {
-            console.error('Failed to get file from server');
-        } finally {
-            setIsLoading(false);
-        }
-    }
-    
-    function downloadBlob(blob: Blob) {
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'temp-name.txt';
-        document.body.appendChild(link);
-        link.click();
-        
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(url);
+        downloadBlob(blob, null);
     }
 }
 

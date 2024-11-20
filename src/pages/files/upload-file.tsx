@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
 import { PageLayout } from "../../components/page-layout";
 import './upload-file.css';
+import fileService from 'src/services/file-service';
 
 
 function UploadFile() {
@@ -33,15 +34,7 @@ function UploadFile() {
         const fileContents = getFileContents(file);
         //ToDo: encrypt fileContents before sending
         
-        const postForm = new FormData();
-        postForm.append('user_id', userId);
-        postForm.append('file', file);
-        
-        try {
-            await axios.postForm('http://localhost:8080/api/', postForm);
-        } catch {
-            console.error('Failed to send file to backend.');
-        }
+        await fileService.uploadFile(userId, file);
     }
     
     
