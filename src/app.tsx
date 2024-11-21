@@ -11,7 +11,6 @@ import { ProfilePage } from "./pages/profile-page";
 import { ProtectedPage } from "./pages/protected-page";
 import { PublicPage } from "./pages/public-page";
 import FilesPage from "./pages/files/files-page";
-import DownloadFile from "./pages/files/download-file";
 import UploadFile from "./pages/files/upload-file";
 
 export const App: React.FC = () => {
@@ -34,12 +33,8 @@ export const App: React.FC = () => {
       <ProtectedRoute path="/admin" component={AdminPage} />
       <Route path="/callback" component={CallbackPage} />
       
-      {/* <ProtectedRoute path="/files" component={FilesPage}/> */}
-      
-      {/* thx react router DOM v5 for making me use routes like this... nested routes would be nice */}
-      <Route path="/files" component={FilesPage}/>
-      <Route path="/file-download" component={DownloadFile}/>
-      <Route path="/file-upload" component={UploadFile}/>
+      <ProtectedRoute path="/files" component={FilesPage}/>
+      <ProtectedRoute path="/upload" component={UploadFile}/>
       
       <Route path="*" component={NotFoundPage} />
     </Switch>

@@ -27,8 +27,8 @@
     border-radius: 10px;
 }
 
-h2 {
-    background-color: whitesmoke;
+.title {
+    background-color: white;
     color: black;
     padding: 1rem;
     border-radius: 5px;

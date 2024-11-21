@@ -43,7 +43,7 @@ const FilesPage: React.FC = () => {
     return (
         <PageLayout>
             <div className="files-container">
-                <h2>my files</h2>
+                <h2 className='title'>my files</h2>
                 
                 {fileList.length === 0 ? (
                     <p>You currently don't have any files stored in LockBox.</p>
