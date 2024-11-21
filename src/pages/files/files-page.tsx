@@ -42,12 +42,13 @@ const FilesPage: React.FC = () => {
     
     return (
         <PageLayout>
-            <h1>my files</h1>
             <div className="files-container">
+                <h2>my files</h2>
+                
                 {fileList.length === 0 ? (
                     <p>You currently don't have any files stored in LockBox.</p>
                 ) : (
-                    <div>
+                    <div className="file-list">
                         {fileList.map((item, index) => (
                             <div className="file-row">
                                 <p>{item.file_name}.{item.file_type}</p>

@@ -1,4 +1,43 @@
 .file-row {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.files-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    /* width: 30vw; */
+}
+
+.file-list {
+    display: flex;
+    width: 30vw;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 5rem;
+    
+    
+    background-color: rgb(27, 27, 27);
+    padding: 5rem;
+    border-radius: 10px;
+}
+
+h2 {
+    background-color: whitesmoke;
+    color: black;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+button {
+    background-color: whitesmoke;
+    color: black;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
 }
