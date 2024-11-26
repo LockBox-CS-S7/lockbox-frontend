@@ -1,6 +1,5 @@
 import axios from "axios";
 import { UserFile } from "src/models/user-file";
-import { encryptAES, decryptAES } from "src/utils/AES-encryption";
 
 class FileService {
     private apiBaseUrl = 'http://localhost:8080/api/';
@@ -18,56 +17,56 @@ class FileService {
         }
     }
     
-    /**
-     * Encrypts a file and then sends it to the backend.
-     * @param userId - The ID of the user that wants to upload the file.
-     * @param password - The encryption password.
-     * @param file - The file that will be encrypted and uploaded.
-     * @returns `true` if the proces was successfull, `false` otherwise.
-     */
-    async encryptAndUploadFile(userId: string, password: string, file: File): Promise<boolean> {
-        // Read file contents
-        const fileContents = await this.readFileToString(file);
-        if (!fileContents) return false;
+    // /**
+    //  * Encrypts a file and then sends it to the backend.
+    //  * @param userId - The ID of the user that wants to upload the file.
+    //  * @param password - The encryption password.
+    //  * @param file - The file that will be encrypted and uploaded.
+    //  * @returns `true` if the proces was successfull, `false` otherwise.
+    //  */
+    // async encryptAndUploadFile(userId: string, password: string, file: File): Promise<boolean> {
+    //     // Read file contents
+    //     const fileContents = await this.readFileToString(file);
+    //     if (!fileContents) return false;
         
-        // encrypt the file
-        const encryptedContents = encryptAES(fileContents, password);
-        const encryptedFile = new File([encryptedContents], file.name, {
-            type: "text/plain", // Adjust type as needed
-        });
+    //     // encrypt the file
+    //     const encryptedContents = encryptAES(fileContents, password);
+    //     const encryptedFile = new File([encryptedContents], file.name, {
+    //         type: "text/plain", // Adjust type as needed
+    //     });
         
-        // create FormData, since backend expects it
-        const postForm = new FormData();
-        postForm.append('user_id', userId);
-        postForm.append('file', encryptedFile);
+    //     // create FormData, since backend expects it
+    //     const postForm = new FormData();
+    //     postForm.append('user_id', userId);
+    //     postForm.append('file', encryptedFile);
         
-        try {
-            await axios.postForm(this.apiBaseUrl, postForm);
-            return true;
-        } catch {
-            console.error('Failed to send file to backend.');
-            return false;
-        }
-    }
+    //     try {
+    //         await axios.postForm(this.apiBaseUrl, postForm);
+    //         return true;
+    //     } catch {
+    //         console.error('Failed to send file to backend.');
+    //         return false;
+    //     }
+    // }
     
-    async getAndDecryptFileBlobById(fileId: string | null, password: string): Promise<Blob | undefined> {
-        if (!fileId) {
-            console.error('No file id was given.');
-            return;
-        }
+    // async getAndDecryptFileBlobById(fileId: string | null, password: string): Promise<Blob | undefined> {
+    //     if (!fileId) {
+    //         console.error('No file id was given.');
+    //         return;
+    //     }
         
-        try {
-            const res = await axios.get(this.apiBaseUrl + fileId, { responseType: 'blob' });
-            const fileContents: string = res.data;
-            const decryptedContents = decryptAES(fileContents, password);
+    //     try {
+    //         const res = await axios.get(this.apiBaseUrl + fileId, { responseType: 'blob' });
+    //         const fileContents: string = res.data;
+    //         const decryptedContents = decryptAES(fileContents, password);
             
-            return new Blob([decryptedContents], { type: 'text/plain' });
+    //         return new Blob([decryptedContents], { type: 'text/plain' });
             
-        } catch {
-            console.error('Failed to get file from server with the given id.');
-            return;
-        }
-    }
+    //     } catch {
+    //         console.error('Failed to get file from server with the given id.');
+    //         return;
+    //     }
+    // }
     
     async getFileBlobById(fileId: String | null) {
         if (!fileId) {
